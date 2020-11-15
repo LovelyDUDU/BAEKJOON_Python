@@ -1,0 +1,3 @@
+print(ord(input()))
+
+# 기존에 사용하던 sys.stdin.readline을 쓰면 오류가 뜬다. 뒤에 \n 까지 입력받아서...
