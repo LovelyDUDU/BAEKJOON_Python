@@ -1,34 +1,28 @@
-import math
+import math, sys
 
+input_num = sys.stdin.readline
 count = 0
 
 
 def sosu(num):
-    if num < 2:
-        return False
-    start = 2
-    point = int(math.sqrt(float(num)))
-    if start > point:
-        return True
-    for _ in range(point):
-        if num % start == 0:
-            return False
-        else:
-            start += 1
-    return True
+    arr = [True] * num
+    n = int(num ** 0.5)
+    for i in range(2, n + 1):
+        if arr[i] == True:
+            for j in range(i + i, num, i):
+                arr[j] = False
+    cnt = []
+    for i in range(2, num):
+        if arr[i] == True and i > num / 2:
+            cnt.append(i)
+    print(len(cnt))
 
 
 while True:
-    test = int(input())
+    test = int(input_num())
     if test == 0:
         break
-
-    end = test * 2
-    count = 0
-    test += 1
-    for _ in range(test, end+1):
-        if sosu(test):
-            count += 1
-        test += 1
-    print(count)
-
+    if test == 1:
+        print(1)
+    else:
+        sosu(test * 2)
