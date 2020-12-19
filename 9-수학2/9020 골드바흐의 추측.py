@@ -1,32 +1,23 @@
 import sys
-from itertools import product
 
 input_num = sys.stdin.readline
-count = 0
 
-
-def sosu(num):
-    arr = [True] * num
-    n = int(num ** 0.5)
-    for i in range(2, n + 1):
-        if arr[i] == True:
-            for j in range(i + i, num, i):
-                arr[j] = False
-    cnt = []
-    for i in range(2, num):
-        if arr[i] == True:
-            cnt.append(i)
-    total = list(product(cnt, repeat=2))
-    for i, j in total:
-        if i > num/2:
-            break
-        if i+j == num:
-            result = str(i) + " " + str(j)
-
-    print(result)
-
+arr = [True] * 10002
+for i in range(2, 10002):
+    if arr[i] == True:
+        for j in range(i + i, 10002, i):
+            arr[j] = False
 
 test = int(input_num())
 for _ in range(test):
     num = int(input_num())
-    sosu(num)
+    fisrt_num = num//2
+    second_num = fisrt_num
+
+    while fisrt_num >0:
+        if arr[fisrt_num]==True and arr[second_num] == True:
+            print(fisrt_num, second_num)
+            break
+        else:
+            fisrt_num-=1
+            second_num+=1
